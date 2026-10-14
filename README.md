@@ -11,7 +11,7 @@ The application uses **Multinomial Naive Bayes** as its primary classification m
 
 **Try ScamSentry AI here:**
 
-🔗 [Launch ScamSentry AI](YOUR-STREAMLIT-APP-URL)
+🔗 [Launch ScamSentry AI](https://scamsentry-kgarbjbwgskkt3jppqxay2.streamlit.app/))
 
 ---
 
