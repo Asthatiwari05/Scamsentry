@@ -1,99 +1,252 @@
-ScamSentry AI
-Explainable SMS Spam Detection Using NLP and Machine Learning
-ScamSentry AI is a web-based application that classifies SMS messages as
-ham (legitimate) or spam using Natural Language Processing (NLP)
-and machine learning. It also provides model evaluation results and
-approximate feature-based explanations to help users understand which
-words may have influenced a prediction.
-🌐 Live Demo: Add your deployed Streamlit app link
-here
-Replace the URL above with your actual Streamlit Community Cloud URL.
+# 🚨 ScamSentry AI
+### Explainable SMS Spam Detection Using NLP and Machine Learning
 
-Features
-- SMS classification: Predicts whether a message is ham or spam.
-- Naive Bayes model tuning: Uses GridSearchCV to select a
-  suitable smoothing parameter (alpha) based on spam-class F1 score.
-- Model comparison: Compares Multinomial Naive Bayes with Logistic
-  Regression.
-- Performance evaluation: Displays accuracy, precision, recall, F1
-  score, confusion matrices, and classification reports.
-- Prediction explanations: Shows approximate word-level
-  contributions for the Naive Bayes prediction, alongside common
-  warning signs.
-- Interactive dashboard: Built with Streamlit, with sections for
-  model evaluation, message prediction, and methodology.
-Tech Stack
-- Language: Python
-- App framework: Streamlit
-- Data processing: pandas
-- Machine learning: scikit-learn
-- Text representation: TF-IDF with unigrams and bigrams
-- Dataset: UCI SMS Spam Collection
-How It Works
-1. Loads and validates the SMS Spam Collection dataset.
-2. Removes exact duplicate messages and prepares a stratified
-   training/test split.
-3. Converts message text into numerical TF-IDF features.
-4. Tunes the Multinomial Naive Bayes alpha parameter using five-fold
-   stratified cross-validation, selecting the model by spam-class F1
-   score.
-5. Trains Logistic Regression as a comparison model.
-6. Evaluates both models on a held-out test set.
-7. Uses the tuned Naive Bayes model to classify text entered by the
-   user.
-Dataset
-The project uses the SMS Spam Collection dataset from the UCI
-Machine Learning Repository:
-- Dataset page:
-  https://archive.ics.uci.edu/dataset/228/sms+spam+collection
-The app downloads the dataset when it first needs to train the models.
-Initial startup may therefore take longer than later interactions.
-Run Locally
-1. Clone the repository
+ScamSentry AI is a machine learning-based web application that classifies SMS messages as **Ham (Legitimate)** or **Spam** using Natural Language Processing (NLP) and Machine Learning algorithms.
+
+The application uses **Multinomial Naive Bayes** as its primary classification model and compares its performance with **Logistic Regression**. It also provides model evaluation metrics and approximate word-level explanations to help users understand predictions.
+
+---
+
+## 🌐 Live Demo
+
+**Try ScamSentry AI here:**
+
+🔗 [Launch ScamSentry AI](YOUR-STREAMLIT-APP-URL)
+
+---
+
+## ✨ Features
+
+- 📩 **SMS Spam Detection:** Classifies messages as spam or legitimate.
+- 🤖 **Machine Learning:** Uses Multinomial Naive Bayes for classification.
+- ⚙️ **Hyperparameter Tuning:** Uses GridSearchCV to select the best smoothing parameter (`alpha`).
+- 📊 **Model Comparison:** Compares Multinomial Naive Bayes with Logistic Regression.
+- 📈 **Performance Evaluation:** Displays accuracy, precision, recall, F1-score, confusion matrices, and classification reports.
+- 🔍 **Explainable Predictions:** Provides approximate word-level contributions to help interpret predictions.
+- ⚠️ **Spam Warning Signs:** Highlights potentially suspicious characteristics of a message.
+- 🖥️ **Interactive Dashboard:** Provides a user-friendly interface built with Streamlit.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|:---|:---|
+| Python | Core programming language |
+| Streamlit | Interactive web application |
+| pandas | Data handling and preprocessing |
+| scikit-learn | Machine learning and model evaluation |
+| TF-IDF | Text feature extraction |
+| Multinomial Naive Bayes | Primary classification model |
+| Logistic Regression | Comparison model |
+| GridSearchCV | Hyperparameter tuning |
+| UCI SMS Spam Collection | Dataset |
+
+---
+
+## ⚙️ How It Works
+
+The application follows these steps:
+
+1. **Dataset Loading:** Loads the SMS Spam Collection dataset.
+2. **Data Preprocessing:** Validates the data, removes exact duplicate messages, and prepares the dataset for training.
+3. **Train-Test Split:** Splits the dataset into training and testing sets using stratified sampling.
+4. **Feature Extraction:** Converts text messages into numerical representations using TF-IDF.
+5. **Model Training:** Trains Multinomial Naive Bayes and Logistic Regression models.
+6. **Hyperparameter Tuning:** Uses five-fold stratified cross-validation to select the Naive Bayes `alpha` parameter based on the spam-class F1-score.
+7. **Model Evaluation:** Evaluates both models on a held-out test dataset.
+8. **Spam Prediction:** Uses the tuned Naive Bayes model to classify user-entered SMS messages.
+9. **Explanation:** Displays approximate word-level contributions and potential warning signs.
+
+---
+
+## 📊 Machine Learning Approach
+
+### 1. TF-IDF Vectorization
+
+TF-IDF (Term Frequency-Inverse Document Frequency) converts text into numerical features that machine learning models can process.
+
+The application uses:
+
+- Unigrams: Individual words.
+- Bigrams: Pairs of consecutive words.
+- English stop-word filtering.
+- Feature limits to manage the vocabulary size.
+
+### 2. Multinomial Naive Bayes
+
+Multinomial Naive Bayes is the primary classification algorithm.
+
+It estimates the probability that a message belongs to a class based on the words present in the message.
+
+The model's `alpha` parameter is tuned using GridSearchCV to identify a suitable smoothing value.
+
+### 3. Logistic Regression
+
+Logistic Regression serves as a comparison model. Its performance is evaluated using the same train-test split to make the comparison more consistent.
+
+### 4. Evaluation Metrics
+
+The models are evaluated using the following metrics:
+
+- **Accuracy:** Overall proportion of correct predictions.
+- **Precision:** Proportion of predicted spam messages that are actually spam.
+- **Recall:** Proportion of actual spam messages correctly identified.
+- **F1-Score:** Harmonic mean of precision and recall.
+- **Confusion Matrix:** Shows correct and incorrect classifications for each class.
+
+The application prioritizes the spam-class F1-score during Naive Bayes hyperparameter tuning.
+
+---
+
+## 📂 Dataset
+
+This project uses the **SMS Spam Collection** dataset from the UCI Machine Learning Repository.
+
+🔗 **Dataset Link:** [UCI SMS Spam Collection](https://archive.ics.uci.edu/dataset/228/sms+spam+collection)
+
+The dataset contains SMS messages labeled as either `ham` or `spam`.
+
+The application downloads the dataset when it first needs to train the models. Initial startup may take longer because of dataset downloading, model training, and hyperparameter tuning.
+
+---
+
+## 🚀 Run Locally
+
+Follow these steps to run ScamSentry AI on your computer.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.10 or a compatible version
+- Git
+- pip
+
+### Step 1: Clone the Repository
+
+```bash
 git clone https://github.com/Asthatiwari05/Scamsentry.git
+```
+
+### Step 2: Navigate to the Project Directory
+
+```bash
 cd Scamsentry
-2. Create and activate a virtual environment
-Ubuntu/Linux:
+```
+
+### Step 3: Create a Virtual Environment
+
+**Ubuntu/Linux:**
+
+```bash
 python3 -m venv .venv
+```
+
+Activate it:
+
+```bash
 source .venv/bin/activate
-Windows (PowerShell):
+```
+
+**Windows PowerShell:**
+
+```powershell
 python -m venv .venv
+```
+
+Activate it:
+
+```powershell
 .venv\Scripts\Activate.ps1
-3. Install dependencies
+```
+
+### Step 4: Install Dependencies
+
+```bash
 pip install -r requirements.txt
-4. Launch the app
+```
+
+### Step 5: Run the Application
+
+```bash
 streamlit run app.py
-Open the local URL shown in your terminal, usually
-http://localhost:8501.
-Project Structure
+```
+
+Open the local URL displayed in your terminal. It is usually:
+
+```text
+http://localhost:8501
+```
+
+---
+
+## 📁 Project Structure
+
+```text
 Scamsentry/
+│
 ├── app.py
+│   └── Main Streamlit application
+│
 ├── requirements.txt
+│   └── Python dependencies
+│
 ├── README.md
+│   └── Project documentation
+│
 └── .gitignore
-Limitations
-- This is an educational prototype, not a guaranteed spam detector.
-- Predictions depend on the dataset and patterns learned during
-  training; new or unusual scams may be misclassified.
-- The dataset primarily contains historical English-language SMS
-  messages, so performance may differ for other languages, regions, or
-  modern scam patterns.
-- Word-level explanations are approximate model-based indicators, not
-  proof that a message is fraudulent or legitimate.
-- The app analyzes only the message text entered by the user; it does
-  not access, read, or block messages on a user's phone.
-Future Improvements
+    └── Files excluded from version control
+```
+
+---
+
+## ⚠️ Limitations
+
+- ScamSentry AI is an educational prototype and is not a guaranteed spam detector.
+- The model may misclassify messages, including new or sophisticated scam messages.
+- The dataset primarily contains historical English-language SMS messages, so performance may vary across languages, regions, and newer scam patterns.
+- Word-level explanations are approximate model-based indicators, not definitive proof that a message is fraudulent or legitimate.
+- The application analyzes only the text entered by the user. It does not access, read, or block SMS messages on a mobile device.
+
+---
+
+## 🔮 Future Enhancements
+
 - Evaluate the model on newer and more diverse SMS datasets.
-- Add support for additional languages.
-- Improve explanation quality and user-facing guidance.
-- Add automated tests and monitor performance on new data.
-Responsible Use
-Do not rely on this tool as the sole basis for deciding whether a
-message, link, or sender is safe. Avoid clicking suspicious links or
-sharing passwords, OTPs, or financial information. Verify important
-messages through the organization's official website or contact channel.
-Author
-Astha Tiwari
-- GitHub: https://github.com/Asthatiwari05
-If you use or build on this project, please credit the UCI SMS Spam
-Collection dataset and the libraries used.
+- Extend support to additional languages.
+- Improve prediction explanations and user guidance.
+- Add automated tests for preprocessing and prediction.
+- Evaluate model performance on unseen and evolving scam patterns.
+- Explore additional machine learning models for comparison.
+
+---
+
+## 🔐 Responsible Use
+
+ScamSentry AI should be used as a supporting tool rather than the sole basis for deciding whether a message is safe.
+
+Always verify suspicious messages through official websites or contact channels. Never share passwords, OTPs, banking credentials, or other sensitive information in response to suspicious messages.
+
+---
+
+## 👨‍💻 Author
+
+**Astha Tiwari**
+
+- GitHub: [@Asthatiwari05](https://github.com/Asthatiwari05)
+
+---
+
+## 📚 Acknowledgements
+
+- [UCI Machine Learning Repository](https://archive.ics.uci.edu/) for the SMS Spam Collection dataset.
+- [Streamlit](https://streamlit.io/) for the web application framework.
+- [scikit-learn](https://scikit-learn.org/) for machine learning and model evaluation tools.
+- [pandas](https://pandas.pydata.org/) for data processing.
+
+---
+
+<p align="center">
+  <b>ScamSentry AI — Making SMS Spam Detection More Understandable.</b>
+</p>
