@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 
-from mutation import compare_messages, detect_mutation_candidates
+from mutation import compare_messages
 st.markdown(
     """
     <style>
@@ -96,12 +96,12 @@ if submitted:
             with st.spinner(
                 "Generating embeddings and comparing messages..."
             ):
-                comparisons = compare_messages(cleaned_messages)
-                candidates = detect_mutation_candidates(
-                    cleaned_messages,
-                    threshold=threshold,
-                )
-
+               comparisons = compare_messages(cleaned_messages)
+               candidates = [
+                 result
+                 for result in comparisons
+                 if result["semantic_similarity"] >= threshold
+               ]
             st.markdown("---")
             st.markdown("### Analysis overview")
 
