@@ -14,3 +14,14 @@ __pycache__/
 # Editor and OS files
 .vscode/
 .DS_Store
+# Additional virtual environments
+.venv-1/
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Local logs
+*.log
+# Local backup files
+app copy.py
+pages/*_backup.py
